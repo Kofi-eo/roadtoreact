@@ -41,25 +41,32 @@ function App() {
       <input style={{ borderColor: "red" }} id="search" type="text" />
       <button>Click me</button>
 
+      <List />
+
       <hr />
-      <ul>
-        {list.map((x) => {
-          return (
-            <li key={x.objectID}>
-              <span>
-                <a href={x.url}>{x.title}</a>
-              </span>
-              <br />
-              <span>{x.author}</span>
-              <br />
-              <span>{x.num_comments}</span>
-              <br />
-              <span>{x.points}</span>
-            </li>
-          );
-        })}
-      </ul>
     </div>
+  );
+}
+
+function List() {
+  return (
+    <ul>
+      {list.map((x) => {
+        return (
+          <li key={x.objectID}>
+            <span>
+              <a href={x.url}>{x.title}</a>
+            </span>
+            <br />
+            <span>{x.author}</span>
+            <br />
+            <span>{x.num_comments}</span>
+            <br />
+            <span>{x.points}</span>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 

@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import axios from 'axios';
+import { ReactComponent as Check } from './icon1.svg';
 
 const welcome = {
   greeting: 'Hey',
@@ -101,7 +103,7 @@ function Search({ searchText, onSearch }) {
       <br />
 
       <input
-        style={{ borderColor: 'red' }}
+        style={{ borderColor: 'red', color: 'blue' }}
         id='search'
         type='text'
         value={searchText}
@@ -121,21 +123,27 @@ function Search({ searchText, onSearch }) {
 
 function List({ list }) {
   return (
-    <ul>
-      {list.map((x) => (
-        <li key={x.objectID}>
-          <span>
-            <a href={x.url}>{x.title}</a>
-          </span>
-          <br />
-          <span>{x.author}</span>
-          <br />
-          <span>{x.num_comments}</span>
-          <br />
-          <span>{x.points}</span>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {list.map((x) => (
+          <li key={x.objectID}>
+            <span>
+              <a href={x.url}>{x.title}</a>
+            </span>
+            <br />
+            <span>{x.author}</span>
+            <br />
+            <span>{x.num_comments}</span>
+            <br />
+            <span>{x.points}</span>
+          </li>
+        ))}
+      </ul>
+
+      <button className='button'>
+        <Check height='50px' width='50px' />
+      </button>
+    </>
   );
 }
 

@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.button:hover > svg > g {
+  fill: #61dafb;
+  stroke: #000000;
+  animation: move 5s alternate;
+}
+
+@keyframes move {
+  0% {
+    fill: #7b7b7b;
+  }
+  100% {
+    fill: #000000;
+  }
+}

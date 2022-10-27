@@ -1,28 +1,43 @@
-import logo from "./logo.svg";
-import "./App.css";
-import React from "react";
+import logo from './logo.svg';
+import './App.css';
+import React from 'react';
 
 const welcome = {
-  greeting: "Hey",
-  title: "React",
+  greeting: 'Hey',
+  title: 'React',
 };
 
 function getTitle(x) {
-  return x + "is here!";
+  return x + 'is here!';
 }
+
+const useSemi = (key, initialState) => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(key) || initialState
+  );
+
+  React.useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [value]);
+
+  return [value, setValue];
+};
+
+// custom component
+const CustomComp = ({ children }) => {
+  return (
+    <>
+      <h1>{children}</h1>;
+    </>
+  );
+};
 
 function App() {
   {
     /* App - root component/parent component */
   }
 
-  const [SearchT, setSearchT] = React.useState(
-    localStorage.getItem("search") || "Kofi"
-  );
-
-  React.useEffect(() => {
-    localStorage.setItem("search", SearchT);
-  }, [SearchT]);
+  const [SearchT, setSearchT] = useSemi('search', '');
 
   const handleChange = (event) => {
     setSearchT(event.target.value);
@@ -30,17 +45,17 @@ function App() {
 
   const stories = [
     {
-      title: "React",
-      url: "https://reactjs.org/",
-      author: "Jordan Walke",
+      title: 'React',
+      url: 'https://reactjs.org/',
+      author: 'Jordan Walke',
       num_comments: 3,
       points: 4,
       objectID: 0,
     },
     {
-      title: "Redux",
-      url: "https://redux.js.org/",
-      author: "Dan Abramov, Andrew Clark",
+      title: 'Redux',
+      url: 'https://redux.js.org/',
+      author: 'Dan Abramov, Andrew Clark',
       num_comments: 2,
       points: 5,
       objectID: 1,
@@ -53,7 +68,7 @@ function App() {
 
   return (
     <div>
-      <Search onSearch={handleChange} searchText={SearchT} />{" "}
+      <Search onSearch={handleChange} searchText={SearchT} />{' '}
       {/*Child component/ leaf component */}
       <List list={filterSearch} /> {/*Child component/ leaf component */}
       <hr />
@@ -82,19 +97,19 @@ function Search({ searchText, onSearch }) {
       <h1>
         {welcome.greeting} World! {getTitle(welcome.title)}
       </h1>
-      <label htmlFor="search">Search: {searchText} </label>
+      <label htmlFor='search'>Search: {searchText} </label>
       <br />
 
       <input
-        style={{ borderColor: "red" }}
-        id="search"
-        type="text"
+        style={{ borderColor: 'red' }}
+        id='search'
+        type='text'
         value={searchText}
         onChange={onSearch}
       />
       <hr />
       <br />
-      <h1>{Number}</h1>
+      <CustomComp>{Number}</CustomComp>
       <br />
 
       <button onClick={add}>Increase Number</button>
